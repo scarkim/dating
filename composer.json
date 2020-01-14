@@ -1,0 +1,12 @@
+{
+  "name": "skimgree/328/howdy",
+  "authors": [
+    {
+      "name": "Scarlett Kim",
+      "email": "skim106@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
