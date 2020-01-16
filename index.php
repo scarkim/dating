@@ -1,3 +1,8 @@
+<!--
+Scarlett Kim
+1/10/20
+Dating controller
+-->
 <?php
 //this is our controller
 //turn on error reporting
@@ -12,7 +17,7 @@ $f3 = Base::instance();
 //define a default route
 $f3->route('GET /', function(){
     $view = new Template();
-    echo $view->render('views/index.html');
+    echo $view->render('views/home.html');
 });
 //run fat free
 $f3->run();
