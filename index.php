@@ -46,7 +46,7 @@ $f3->route('POST /summary', function(){
     }
     $view = new Template();
     echo $view->render('views/summary.html');
-    session_destroy ();
+
 });
 //run fat free
 $f3->run();
