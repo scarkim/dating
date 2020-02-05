@@ -1,10 +1,22 @@
-/*body {*/
-/*    background-color: #ffeefc;*/
-/*}*/
+body {
+    background-color: #E6DDDE;
+    font-weight: bold;
+}
+h1, h3{
+    color: #654A4E;
+    font-weight: bold;
+}
+
+nav {
+    background-color: #E6DDDE;
+    border-bottom: solid #CFC6C7 0.5px;
+    margin-bottom: 20px;
+}
 .quote {
     font-style: italic;
     word-wrap: break-word;
     width: 50%;
+
 }
 
 .scroll-slow {
@@ -20,25 +32,46 @@
     width: 40%;
     padding-left:30px;
 }
+.err {
+    display: none;
+    color: darkred;
+}
 
+.interests {
+    display:inline-block;
+    width:250px;
+    color: #58565C;
+}
+
+
+
+* {
+    font-family: 'Eczar', serif;;
+    /*font-weight: bold;*/
+}
 .ghost-button {
-    float: right;
-    color: gray;
-    background: #fff;
+    color: black;
     border: 1px solid gray;
     font-size: 17px;
     padding: 7px 12px;
-    font-weight: normal;
     margin: 6px 0;
     margin-right: 5px;
     display: inline-block;
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
     min-width: 120px;
+    background-color:white;
 }
 .ghost-button:hover, .ghost-button:active {
-    color:#fff;
-    background:gray;
+    color:grey;
+
+}
+
+#cardbody{
+    background-color: whitesmoke;
+    border: solid grey 1px;
+    word-wrap: break-word;
+    width: 50%;
+    color: gray();
 }
 .scroll-slow p {
     position: absolute;
@@ -77,41 +110,19 @@
         transform: translateX(-100%);
     }
 }
+textarea {
+    overflow-y: scroll;
+    height: 150px;
+    resize: none; /* Remove this if you want the user to resize the textarea */
+}
+.checkbox {
+    /*padding: 20px;*/
+    width:250px;
+    color: #58565C;
+}
 
-
-/*.marquee {*/
-/*    margin: 0 auto;*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden;*/
-/*    position: absolute;*/
-/*}*/
-
-/*.marquee {*/
-/*    margin: 0 auto;*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden;*/
-/*    position: absolute;*/
-/*    color: indianred;*/
-/*    font-size: 24px;*/
-
-/*}*/
-
-/*.marquee span {*/
-/*    display: inline-block;*/
-/*    padding-left: 100%;*/
-/*    animation: marquee 5s linear infinite;*/
-/*}*/
-
-/*.marquee2 span {*/
-/*    animation-delay: 2.5s;*/
-/*}*/
-
-/*@keyframes marquee {*/
-/*    0% {*/
-/*        transform: translate(0, 0);*/
-/*    }*/
-/*    100% {*/
-/*        transform: translate(-100%, 0);*/
-/*    }*/
-/*}*/
-
+.state {
+    width: 600px;
+    height: 30px;
+    margin-bottom: 20px ;
+}

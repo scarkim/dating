@@ -31,75 +31,48 @@ Dating interests page
     <form id="profile" action="summary" method="post">
         <div class="control-group">
             <p class="pull-left">In-door Interests</p>
-            <div class="controls span2">
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Eating">Eating
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Napping"> Napping
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Scratching the couch"> Scratching the couch
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]" value="Playing with yarn"> Playing with yarn
-                </label>
-            </div>
-            <div class="controls span2">
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Crying"> Crying
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Stepping on owner's face">Stepping on owner's face
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Loud Meowing"> Loud Meowing
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interests[]"  value="Sunbathing"> Sunbathing
-                </label>
-            </div>
+
+                <repeat group="{{ @indoors }}" value="{{ @indoorsOption }}">
+                    <div class = "interests">
+                    <label><input type="checkbox"
+                                  name="indoors[]"
+                                  value="{{ @indoorsOption }}"
+                                  class="checkbox-label"
+
+                        <check if="{{ isset(@selectedIndoors) && in_array(@indoorsOption, @selectedIndoors) }}">
+                            checked="checked"
+                        </check>
+                       > {{ @indoorsOption }}
+                    </label><br>
+                    </div>
+                </repeat>
+
+
+
+            <p class="pull-left">Out-door Interests</p>
+            <repeat group="{{ @outdoors }}" value="{{ @outdoorsOption }}">
+                <div class = "interests">
+                <label><input type="checkbox"
+                              name="outdoors[]"
+                              value="{{ @outdoorsOption }}"
+                              class="checkbox-label"
+                              style="display:inline-block"
+                    <check if="{{ isset(@selectedOutdoors) && in_array(@outdoorsOption, @selectedOutdoors) }}">
+                        checked="checked"
+                    </check>
+                    > {{ @outdoorsOption }}
+                </label><br>
+                </div>
+            </repeat>
         </div>
-<br>
-<!--        CHANGE IDS       -->
-        <div class="control-group">
-            <p class="pull-left">Outdoor Interests</p>
-            <div class="controls span2">
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]" value="Scratching Tree">Scratching Tree
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Sprinting around"> Sprinting around
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Playing with Dog"> Playing with Dog
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Rolling in grass"> Rolling in grass
-                </label>
-            </div>
-            <div class="controls span2">
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Car rides"> Car rides
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Football"> Football
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Chasing butterflies">Chasing butterflies
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name = "interestsOut[]"  value="Partying"> Partying
-                </label>
-                <br><br>
-            </div>
-        </div>
+        <br>
+
         <div class ="text-center">
             <input type= "submit" id = "link" class = "ghost-button center-block" value="Next" >
         </div>
     </form>
-
 </div>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
