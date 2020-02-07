@@ -1,5 +1,5 @@
 {
-  "name": "skimgree/328/howdy",
+  "name": "skimgree/328/dating",
   "authors": [
     {
       "name": "Scarlett Kim",
@@ -10,3 +10,4 @@
     "bcosca/fatfree-core": "dev-master"
   }
 }
+
