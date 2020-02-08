@@ -91,13 +91,19 @@ function validGender($gender){
     if (isset($_POST["gender"]) AND in_array($gender, $f3->get('genders'))) {
         return true;
     }
+    else if (!isset($_POST["gender"])) {
+        return true;
+    }
     else {
         return false;
     }
 }
 function validSeeking($seeking){
     global $f3;
-    if (isset($_POST["seeking"]) AND in_array($seeking, $f3->get('seekingArr'))) {
+    if (isset($_POST["seeking"]) AND in_array($seeking, $f3->get('seeking'))) {
+        return true;
+    }
+    else if (!isset($_POST["seeking"])) {
         return true;
     }
     else {
