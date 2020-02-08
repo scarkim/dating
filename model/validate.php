@@ -100,7 +100,7 @@ function validGender($gender){
 }
 function validSeeking($seeking){
     global $f3;
-    if (isset($_POST["seeking"]) AND in_array($seeking, $f3->get('seeking'))) {
+    if (isset($_POST['seeking']) AND in_array($seeking, $f3->get('seekingArr'))) {
         return true;
     }
     else if (!isset($_POST["seeking"])) {
