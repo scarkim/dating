@@ -26,49 +26,59 @@ Dating personal info page
     <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating for Cats</a>
 </nav>
 <div class="container mx-auto">
-    <form id="personal-info" action="profile" method="post">
+    <form id="personal-info" action="#" method="post">
         <div class="form-group">
 <h1>Personal Information</h1>
             <hr class="my-4">
         <!--        change to label for -->
         <label>First Name:*</label>
-        <input type = "text"  class="form-control col-sm-7" name="firstname" id = "firstname">
-        <br>
-        <span class="err" id="err-fname">Required field</span>
+        <input type = "text"  class="form-control col-sm-7" name="firstname" id = "firstname" value = "{{ @firstname }}">
+            <check if="{{ @errors['firstname'] }}">
+                <span class="err">{{ @errors['firstname'] }}</span>
+            </check>
+            <br>
                 <div class="card col-sm-4" id = "cardbody" style="width: 18rem; float: right">
                     <div class="card-body">
                         <h5 class="card-title"><b>Note:</b></h5>
-<!--                        <h6 class="card-subtitle mb-2 text-muted">Note:</h6>-->
                         <p class="card-text">All information entered is protected by our privacy policy. Profile information can only be viewed by others with you permission.</p>
                     </div>
                 </div>
 
         <label>Last Name:*</label>
-        <input type = "text"  class="form-control col-sm-7" name="lastname" id = "lastname">
-                <span class="err" id="err-lname">Required field</span>
+        <input type = "text"  class="form-control col-sm-7" name="lastname" id = "lastname" value = "{{ @lastname }}">
+            <check if="{{ @errors['lastname'] }}">
+                <span class="err">{{ @errors['lastname'] }}</span>
+            </check>
 
-<br>
+        <br>
             <label>Age:*</label>
-
             <input type = "text"  class="form-control col-sm-7" name="age" id = "age">
 
+            <check if="{{ @errors['age'] }}">
+                <span class="err">{{ @errors['age'] }}</span>
+            </check>
+         <br><br>
+                <label>Gender:* &nbsp;&nbsp; </label>
+                <repeat group="{{ @genders }}" value="{{ @genderOption }}">
+                    <label>&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input"
+                                  name="gender"
+                                  value="{{ @genderOption }}"
+                        <check if = "{{@gender== @genderOption}}"> checked="checked"</check>
+                        >{{ ucfirst(@genderOption) }}
+                    </label>&nbsp;&nbsp;
+                </repeat>
             <br>
-            <span class="err" id="err-age">Required field</span>
-        <label>Gender: &nbsp;</label>
-            <label class="radio-inline">
-                <input type="radio" name="gender" value="Female">Female &nbsp;
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="gender" value="Male">Male &nbsp;
-            </label>
-            <br>
-            <br>
+            <check if="{{ @errors['gender'] }}">
+                <span class="err">{{ @errors['gender'] }}</span>
+            </check>
+            <br><br>
             <label>Phone Number:*</label>
-            <input type = "text"  class="form-control col-sm-7" name="phone" id = "phone">
+            <input type = "text"  class="form-control col-sm-7" name="phone" id = "phone" value = "{{ @phone }}">
+
+            <check if="{{ @errors['phone'] }}">
+                <span class="err">{{ @errors['phone'] }}</span>
+            </check>
             <br>
-            <span class="err" id="err-phone">Required field</span>
-            <br>
-        <span class="err" id="err-flavor">Please select an option</span>
             <div class ="text-center">
         <input type="submit" id = "link" class = "ghost-button center-block" value="Next" >
             </div>

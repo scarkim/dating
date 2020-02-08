@@ -8,10 +8,10 @@ Dating profile page
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
     <!-- Bootstrap & Pizza CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Eczar&display=swap" rel="stylesheet">
     <title>Cat Dating Site</title>
@@ -26,38 +26,46 @@ Dating profile page
     <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating for Cats</a>
 </nav>
 <div class="container mx-auto">
-    <form id="profile" action="interests" method="post">
+    <form id="profile" action="#" method="post">
         <div class="form-group">
-            <h1>Profile Information</h1>
+            <h1>Profile</h1>
             <hr class="my-4">
             <div style=" float: right">
                 <p>Biography</p>
-                <textarea id = "biography" name = "biography" rows="10" cols="45"></textarea>
+                <textarea id = "biography" value="{{ @biography }}" name = "biography" rows="10" cols="45"></textarea>
             </div>
             <label>Email*</label>
-            <input type = "email"  class="form-control col-sm-7" name="email" id = "email">
+            <input type = "email"  class="form-control col-sm-7"value="{{ @email }}" name="email" id = "email">
+
+            <check if="{{ @errors['email'] }}">
+                <span class="err">{{ @errors['email'] }}</span>
+
+            </check>
             <br>
-            <span class="err" id="err-email">Required field</span>
-
-            <label>State:</label>
-            <select class = "state" name= "state">
-                <option id="washington"  value="Washington">Washington</option>
-                <option id = "oregon" value="Oregon">Oregon</option>
-                <option id = "california"  value="California">California</option>
-                <option id = "texas"  value="Texas">Texas</option>
-            </select>
-
-            <span class="err" id="err-age">Required field</span>
+                <label>State</label><br>
+                <select name="state">
+                    <repeat group="{{@states}}" value="{{@selectStates}}">
+                        <option value="{{@selectStates}}"
+                        <check if = "{{@state==@selectStates}}">
+                            selected="selected"
+                        </check>>{{ @selectStates }}
+                        </option>
+                    </repeat>
+                </select>
 
             <label>Seeking: &nbsp;</label>
-            <label class="radio-inline">
-                <input type="radio" name="seeking" value="Female"> Female &nbsp;
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="seeking" value = "Male"> Male &nbsp;
-            </label>
+            <repeat group="{{ @seekingArr }}" value="{{ @seekingOption }}">
+                <label>&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input"
+                                                name="seeking"
+                                                value="{{ @seekingOption }}"
+                    <check if = "{{@seeking== @seekingOption}}"> checked="checked"</check>
+                    >{{ @seekingOption }}
+                </label>&nbsp;&nbsp;
+            </repeat>
             <br>
-            <span class="err" id="err-seeking">Please select an option</span>
+            <check if="{{ @errors['seeking'] }}">
+                <span class="err">{{ @errors['seeking'] }}</span>
+            </check>
             <div class ="text-center">
                 <input type ="submit" id = "link" class = "ghost-button center-block" value="Next">
             </div>
