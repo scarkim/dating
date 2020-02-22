@@ -1,29 +1,7 @@
-<!--
-Scarlett Kim
-1/15/20
-Dating personal info page
--->
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap & Pizza CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Eczar&display=swap" rel="stylesheet">
-     <title>Cat Dating Site</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png"
-          href="images/favicon.png">
-
-</head>
+<include href="views/header.html" />
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating for Cats</a>
+    <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating</a>
 </nav>
 <div class="container mx-auto">
     <form id="personal-info" action="#" method="post">
@@ -57,7 +35,7 @@ Dating personal info page
             <check if="{{ @errors['age'] }}">
                 <span class="err">{{ @errors['age'] }}</span>
             </check>
-         <br><br>
+         <br>
                 <label>Gender:* &nbsp;&nbsp; </label>
                 <repeat group="{{ @genders }}" value="{{ @genderOption }}">
                     <label>&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input"
@@ -71,7 +49,7 @@ Dating personal info page
             <check if="{{ @errors['gender'] }}">
                 <span class="err">{{ @errors['gender'] }}</span>
             </check>
-            <br><br>
+            <br>
             <label>Phone Number:*</label>
             <input type = "text"  class="form-control col-sm-7" name="phone" id = "phone" value = "{{ @phone }}">
 
@@ -79,6 +57,9 @@ Dating personal info page
                 <span class="err">{{ @errors['phone'] }}</span>
             </check>
             <br>
+            <p>Premium Membership</p>
+            <input type = "checkbox" id = "premium" name="premium"><label>Sign me up for a premium account!</label>
+
             <div class ="text-center">
         <input type="submit" id = "link" class = "ghost-button center-block" value="Next" >
             </div>

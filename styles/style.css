@@ -1,14 +1,15 @@
 body {
-    background-color: #E6DDDE;
+    background-color: #FBF6F2;
     font-weight: bold;
 }
 h1, h3{
-    color: #654A4E;
+    color: #a22c29;;
     font-weight: bold;
 }
 
 nav {
-    background-color: #E6DDDE;
+    background-color: #FBF6F2 ;
+    /*background-color: #E6DDDE;*/
     border-bottom: solid #CFC6C7 0.5px;
     margin-bottom: 20px;
 }
@@ -16,7 +17,6 @@ nav {
     font-style: italic;
     word-wrap: break-word;
     width: 50%;
-
 }
 
 .scroll-slow {
@@ -28,9 +28,10 @@ nav {
     /*border: 1px solid orange;*/
 }
 
-#cat {
-    width: 40%;
+#couple-pic {
+    width: 30%;
     padding-left:30px;
+    padding-right: 20px;
 }
 .err {
     color: darkred;
@@ -45,7 +46,7 @@ nav {
 
 
 * {
-    font-family: 'Eczar', serif;;
+    font-family: 'Source Code Pro', monospace;
     /*font-weight: bold;*/
 }
 .ghost-button {
@@ -124,4 +125,8 @@ textarea {
     width: 600px;
     height: 30px;
     margin-bottom: 20px ;
+}
+#profile-pic {
+    width: 200px;
+    margin-bottom: 15px;
 }

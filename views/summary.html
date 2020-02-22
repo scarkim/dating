@@ -1,29 +1,7 @@
-<!--
-Scarlett Kim
-1/22/20
-Dating summary page
--->
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap & Pizza CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Eczar&display=swap" rel="stylesheet">
-    <title>Cat Dating Site</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png"
-          href="images/favicon.png">
-
-</head>
+<include href="views/header.html" />
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating for Cats</a>
+    <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating</a>
 </nav>
 <div class="container mx-auto">
     <h1>Summary</h1>
@@ -32,27 +10,35 @@ Dating summary page
 
         <div id = "cardbody" style="width: 40rem; float: right">
             <div class="card-body">
-                <h5 class="card-title"><b>Biography:</b>
-                    <img alt = "cat profile" src = "images/cat-profile.png" style="width: 30px;"></h5>
-                <p class="card-text"> {{ @SESSION.biography }} </p>
+                <h5 class="card-title"><b>Biography:</b></h5>
+                <p class="card-text">{{ @SESSION['member']->getBio() }} </p>
             </div>
         </div>
     </div>
-    <p>Name: {{ @SESSION.firstname }} {{ @SESSION.lastname}} </p>
-    <p>Gender: {{ @SESSION.gender }}</p>
-    <p>Age: {{ @SESSION.age }}</p>
-    <p>Phone: {{ @SESSION.phone }}</p>
-    <p>Email: {{ @SESSION.email }}</p>
-    <p>State: {{ @SESSION.state }}</p>
-    <p>Seeking: {{ @SESSION.seeking }}</p>
-    <p>Interests: {{ @SESSION.indoors }}  {{  @SESSION.outdoors }}</p>
+    <img src = "images/default-profile.png" id = "profile-pic">
+<p>Name: {{  @SESSION['member']->getFName() }} {{ @SESSION['member']->getLName() }} </p>
+
+    <p>Gender: {{ @SESSION['member']->getGender() }}</p>
+    <p>Age: {{ @SESSION['member']->getAge() }}</p>
+    <p>Phone: {{ @SESSION['member']->getPhone() }}</p>
+    <p>Email: {{ @SESSION['member']->getEmail() }}</p>
+    <p>State: {{ @SESSION['member']->getState() }}</p>
+    <p>Seeking: {{ @SESSION['member']->getSeeking() }}</p>
+    <check if="{{ @SESSION['member'] instanceof PremiumMember }}">
+        <true>
+            <p>Indoor interests: {{ @SESSION['member']->getIndoors() }} </p>
+            <p>Outdoor interests: {{ @SESSION['member']->getOutdoors() }}</p>
+        </true>
+    </check>
 </div>
+
+<!--</div>-->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="scripts/dating.js"></script>
+<!--<script src="scripts/dating.js"></script>-->
 </body>
 </html>
 

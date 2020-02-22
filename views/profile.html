@@ -1,26 +1,4 @@
-<!--
-Scarlett Kim
-1/17/20
-Dating profile page
--->
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
-    <!-- Bootstrap & Pizza CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Eczar&display=swap" rel="stylesheet">
-    <title>Cat Dating Site</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png"
-          href="images/favicon.png">
-
-</head>
+<include href="views/header.html" />
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="http://skim.greenriverdev.com/328/dating/">Dating for Cats</a>
@@ -34,6 +12,13 @@ Dating profile page
                 <p>Biography</p>
                 <textarea id = "biography" value="{{ @biography }}" name = "biography" rows="10" cols="45"></textarea>
             </div>
+            <form action="views/upload.php" method="post" enctype="multipart/form-data">
+                Upload your Profile Picture<br>
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <br><br>
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+<br><br>
             <label>Email*</label>
             <input type = "email"  class="form-control col-sm-7"value="{{ @email }}" name="email" id = "email">
 
