@@ -30,7 +30,7 @@
 
         <br>
             <label>Age:*</label>
-            <input type = "text"  class="form-control col-sm-7" name="age" id = "age">
+            <input type = "text"  class="form-control col-sm-7" name="age" id = "age" value = "{{ @age }}" >
 
             <check if="{{ @errors['age'] }}">
                 <span class="err">{{ @errors['age'] }}</span>

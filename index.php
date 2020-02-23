@@ -44,6 +44,10 @@ $f3->route('GET|POST /interests', function($f3) {
     $controller->interests();
 
 });
+$f3->route("GET|POST /profilePic", function () {
+    global $controller;
+    $controller->profilePic();
+});
 $f3->route('GET|POST /summary', function() {
     global $controller;
     $controller->summary();

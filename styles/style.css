@@ -126,7 +126,10 @@ textarea {
     height: 30px;
     margin-bottom: 20px ;
 }
-#profile-pic {
+.profile-pic {
     width: 200px;
     margin-bottom: 15px;
 }
+ #no-button{
+     margin-top: 200px;
+ }

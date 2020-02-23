@@ -1,0 +1,28 @@
+<include href="views/header.html" />
+<div class="container-fluid p-5">
+        <form style="display: block; text-align: center;"  action="#" method="post" enctype="multipart/form-data">
+            <label for="fileToUpload">
+                <h1>Choose a profile picture.</h1>
+            </label>
+            <br>
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <br><br>
+            <input type="submit" value="Upload Image" name="submit">
+                <br>
+            <check if="{{ @errors['notImage'] }}">
+                <span class="err">{{ @errors['notImage'] }}</span>
+            </check>
+            <check if="{{ @errors['uploadError'] }}">
+                <span class="err">{{ @errors['uploadError'] }}</span>
+            </check>
+            <check if="{{ @errors['fileError'] }}">
+                <span class="err">{{ @errors['fileError'] }}</span>
+            </check>
+            <check if="{{ @errors['uploadType'] }}">
+                <span class="err">{{ @errors['uploadType'] }}</span>
+            </check>
+            <br>
+            <a class="ghost-button" id = "no-button" href="summary">No thanks</a>
+        </form>
+    </div>
+</div>

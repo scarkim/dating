@@ -15,7 +15,11 @@
             </div>
         </div>
     </div>
-    <img src = "images/default-profile.png" id = "profile-pic">
+    <check if="{{ @SESSION.profileImage }}">
+        <true><img src="{{ @SESSION.profileImage }}" class = "profile-pic" alt="uploaded profile pic"></true>
+        <false> <img src = "images/default-profile.png" class = "profile-pic" alt="default profile pic"></false>
+    </check>
+
 <p>Name: {{  @SESSION['member']->getFName() }} {{ @SESSION['member']->getLName() }} </p>
 
     <p>Gender: {{ @SESSION['member']->getGender() }}</p>
