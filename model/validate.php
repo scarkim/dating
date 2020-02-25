@@ -78,26 +78,46 @@ class Validate
 //        return $validInterest;
 //    }
 
+    /**
+     * @param $firstname
+     * @return bool
+     */
     function validFirstName($firstname)
     {
         return !empty($firstname) && ctype_alpha($firstname);
     }
 
+    /**
+     * @param $lastname
+     * @return bool
+     */
     function validLastName($lastname)
     {
         return !empty($lastname) && ctype_alpha($lastname);
     }
 
+    /**
+     * @param $age
+     * @return bool
+     */
     function validAge($age)
     {
         return (!empty($age) && ctype_digit($age) && ($age >= 18 && $age <= 118));
     }
 
+    /**
+     * @param $phone
+     * @return bool
+     */
     function validPhone($phone)
     {
         return (strlen($phone) == 10 && !empty($phone) && ctype_digit($phone));
     }
 
+    /**
+     * @param $gender
+     * @return bool
+     */
     function validGender($gender)
     {
         global $f3;
@@ -111,6 +131,10 @@ class Validate
         }
     }
 
+    /**
+     * @param $seeking
+     * @return bool
+     */
     function validSeeking($seeking)
     {
         global $f3;
@@ -123,6 +147,10 @@ class Validate
         }
     }
 
+    /**
+     * @param $indoorArr
+     * @return bool
+     */
     function validIndoors($indoorArr)
     {
         global $f3;
@@ -142,6 +170,10 @@ class Validate
         return $validCheck;
     }
 
+    /**
+     * @param $outdoorArr
+     * @return bool
+     */
     function validOutdoors($outdoorArr)
     {
         global $f3;
@@ -161,6 +193,10 @@ class Validate
         return $validCheck;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     function validEmail($email)
     {
         $emailResult = false;
