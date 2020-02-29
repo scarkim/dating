@@ -11,16 +11,18 @@ class Member
     private $_state;
     private $_seeking;
     private $_bio;
-
+    private $_isPre;
+    private $_defImage;
 
     //Parameterized constructor
-    function __construct($fname, $lname, $age, $gender, $phone)
+    function __construct($fname, $lname, $age, $gender, $phone, $isPre)
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
         $this->_age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+        $this->_isPre = $isPre;
     }
 
     function getFName(){
@@ -74,15 +76,18 @@ class Member
     function setSeeking($seeking){
          $this->_seeking = $seeking;
     }
+    function setDefaultImage($image){
+        $this->_defImage = $image;
+    }
+    function getDefaultImage(){
+        return $this->_defImage;
+    }
+
     function setBio($bio){
          $this->_bio = $bio;
     }
-
-
-
-
-
-
-
-
+    function isPremium()
+    {
+        return $this->_isPre;
+    }
 }

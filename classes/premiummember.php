@@ -9,6 +9,7 @@ class PremiumMember Extends Member
      * @var inDoorInterests
      */
     private  $_inDoorInterests;
+    private $_image;
     /**
      * @var outDoorInterests
      */
@@ -22,9 +23,9 @@ class PremiumMember Extends Member
      * @param $gender
      * @param $phone
      */
-    function __construct($fname, $lname, $age, $gender, $phone)
+    function __construct($fname, $lname, $age, $gender, $phone, $isPre)
     {
-        parent::__construct($fname, $lname, $age, $gender, $phone);
+        parent::__construct($fname, $lname, $age, $gender, $phone, $isPre);
     }
 
     /**
@@ -53,5 +54,11 @@ class PremiumMember Extends Member
      */
     function getOutdoors(){
         return $this->_outDoorInterests;
+    }
+    function setImage($image){
+        $this->_image = $image;
+    }
+    function getImage(){
+        return $this->_image;
     }
 }

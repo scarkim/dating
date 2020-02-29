@@ -21,7 +21,7 @@ $f3->set('indoors', array('Eating', 'Napping', 'Card games', 'Cleaning',
     'Crying', 'Cooking', 'Singing', 'Knitting'));
 $f3->set('outdoors', array('Running', 'Shopping', 'Playing with Dog', 'Going to the beach',
     'Long drives', 'Concerts', 'Sports', 'Partying'));
-
+$db = new Database();
 $controller = new DatingController($f3);
 //define a default route
 $f3->route('GET /', function () {

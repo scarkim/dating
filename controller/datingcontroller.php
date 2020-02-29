@@ -99,7 +99,7 @@ class DatingController
                         $gender = "n/a";
                     }
                     //create new instance of member object w/ gender value being n/a
-                    $member = new PremiumMember($firstname, $lastname, $age, $gender, $phone);
+                    $member = new PremiumMember($firstname, $lastname, $age, $gender, $phone, 1);
                     $_SESSION['member'] = $member;
                 } //          keep in account optional field gender
                 else {
@@ -108,7 +108,7 @@ class DatingController
                         $gender = "n/a";
                     }
 
-                    $member = new Member($firstname, $lastname, $age, $gender, $phone);
+                    $member = new Member($firstname, $lastname, $age, $gender, $phone, 0);
                     $_SESSION['member'] = $member;
                 }
                 //Redirect to profile
@@ -165,6 +165,12 @@ class DatingController
                     $this->_f3->reroute('/interests');
                 }
                 else {   //IF NOT A PREMIUM MEMBER, SKIP THE INTERESTS PAGE
+//                    $_SESSION['member']->setInterests(" ");
+                    $_SESSION['member']->setDefaultImage("images/default-profile.png");
+//                    $_SESSION['member']->setIndoorInterests(" ");
+//                    $_SESSION['member']->setOutdoorInterests(" ");
+
+                    $GLOBALS['db']->insertMember($_SESSION['member']);
                     $this->_f3->reroute('/summary');
                 }
             }
@@ -228,7 +234,6 @@ class DatingController
     }
             $view = new Template();
             echo $view->render('views/interests.html');
-
     }
 
     /**
@@ -236,6 +241,11 @@ class DatingController
      */
     public function profilePic()
     {
+        //if user decides not to upload pic, set to default pic and move on to summary page
+        if(isset($_POST['no-button'])){
+            $_SESSION['member']->setImage("images/default-profile.png");
+            $this->_f3->reroute('/summary');
+        }
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,
@@ -261,6 +271,8 @@ class DatingController
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                         $_SESSION["profileImage"] = $target_file;
                         $this->_f3->set("profileImage", $target_file);
+                        $_SESSION['member']->setImage($target_file);
+                        $GLOBALS['db']->insertMember($_SESSION['member']);
                         $this->_f3->reroute('/summary');
                     } else {
                         $this->_f3->set("errors['uploadError']",
@@ -282,10 +294,9 @@ class DatingController
      */
     public function summary()
     {
+//        var_dump($_SESSION['member']);
         $view = new Template();
         echo $view->render('views/summary.html');
         session_destroy();
     }
-
-
 }
