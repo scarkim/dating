@@ -2,6 +2,7 @@
 
 class Member
 {
+    private $_id;
     private $_fname;
     private $_lname;
     private $_age;
@@ -24,7 +25,12 @@ class Member
         $this->_phone = $phone;
         $this->_isPre = $isPre;
     }
-
+    function setID($id){
+        $this->_id = $id;
+    }
+    function getID(){
+        return $this->_id;
+    }
     function getFName(){
         return $this->_fname;
     }

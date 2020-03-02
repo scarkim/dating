@@ -30,8 +30,24 @@ require_once("config-dating.php");
     type varchar(255),
     PRIMARY KEY (interest_id)
     );
+INSERT INTO `interests` (`interest_id`, `interest`, `type`) VALUES
+(DEFAULT, 'Eating', 'indoor'),
+(DEFAULT, 'Napping', 'indoor'),
+(DEFAULT, 'Card games', 'indoor'),
+(DEFAULT, 'Cleaning', 'indoor'),
+(DEFAULT, 'Crying', 'indoor'),
+(DEFAULT, 'Cooking', 'indoor'),
+(DEFAULT, 'Singing', 'indoor'),
+(DEFAULT, 'Knitting', 'indoor'),
+(DEFAULT, 'Running', 'outdoor'),
+(DEFAULT, 'Shopping', 'outdoor'),
+(DEFAULT, 'Playing with Dog', 'outdoor'),
+(DEFAULT, 'Going to the beach', 'outdoor'),
+(DEFAULT, 'Long drives', 'outdoor'),
+(DEFAULT, 'Concerts', 'outdoor'),
+(DEFAULT, 'Sports', 'outdoor'),
+(DEFAULT, 'Partying', 'outdoor');
 
-    THIS IS WRONG
     CREATE TABLE member_interest (
     member_id int NOT NULL,
     interest_id int NOT NULL,
@@ -52,18 +68,18 @@ class Database
      */
     function __construct()
     {
-        try {
-         //CREATING A NEW PDO CONNECTION
-         $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-//         echo "Connected!";
-         //if there is an error, print error message
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
+        $this->connect();
     }
 
     function connect(){
-
+        try {
+            //CREATING A NEW PDO CONNECTION
+            $this->_dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+//         echo "Connected!";
+            //if there is an error, print error message
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     function insertMember($member){
@@ -72,7 +88,7 @@ class Database
                 seeking, bio, premium, image)
                 VALUES(default, :fname, :lname , :age, :gender, :phone, :email, :state,
                 :seeking, :bio, :premium, :image)";
-//        :premium,
+
         //2. prepare the statement (passing the sql statement to database)
         $statement = $this->_dbh->prepare($sql);
         //3. bind the parameters
@@ -98,25 +114,19 @@ class Database
             $statement->bindParam(':image', $member->getDefaultImage());
         }
 
-//        else {
-//            $statement->bindParam(':premium', $member->setPremiumm());
-//            $statement->bindParam(':image', $member->getImage());
-//        }
         //4. execute statement
         $statement->execute();
         //5. get the result
-//        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //get the primary key of the last inserted row (in this case it is sid)
-//        $id = $this->_dbh->lastInsertId();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     function getMembers(){
         //1. define the query
         //GRAB ALL MEMBERS FROM MEMBER TABLE. SORT THEM BY LAST NAME AND THEN FIRST
         $sql = "SELECT * FROM  member
-                ORDER BY last, first";
+                ORDER BY lname, fname";
         //2. prepare the statement
         $statement = $this->_dbh->prepare($sql);
-        //3. bind the parameters
         //4. execute statement
         $statement->execute();
         //5. get the result
@@ -124,63 +134,41 @@ class Database
         return $result;
     }
     function getMember($member_id){
-
+        $sql = "SELECT * FROM member WHERE member_id = :member_id";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(":member_id", $member_id,PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
     function getInterests($member_id){
-        //1. define the query
-//        $sql = "SELECT interest? FROM student, advisor
-//                WHERE student.advisor = advisor.advisor_id
-//                AND sid = :sid";
-//        //2. prepare the statement
-//        $statement = $this->_dbh->prepare($sql);
-//        //3. bind the parameters
-//        //name and value im putting into :sid
-//        $statement->bindParam(':sid', $sid);
-//        //4. execute statement
-//        $statement->execute();
-//        //5. get the result
-//        $result = $statement->fetch(PDO::FETCH_ASSOC);
-//        return $result;
+
     }
-    public function insertInterests($member) {
-        $sql = "SELECT member_id FROM  member";
-        $statement = $this->_dbh->prepare($sql);
-        $memb_id=0;
-        $statement->bindParam(':indoor', $member->getIndoorInterests());
-        $statement->bindParam(':outdoor', $member->getOutdoorInterests());
-        $indoor=implode("','",$member->getIndoorInterests());
-        $outdoor=implode("','",$member->getOutdoorInterests());
-        if (!empty($indoorInterests)) {
-            foreach ($indoorInterests AS $interest ) {
-                $sql = "SELECT interestID FROM interest WHERE interest = '$interest'";
-                $statement = $this->_cnxn->prepare($sql);
-                $statement->execute();
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
-            }
-        }
+//                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    public function insertIndoorInterests($member) {
+//        $indoorInterests = $member->getIndoors();
+//                $sql = "INSERT INTO interests (interest_id, interest, type)
+//                 VALUES (default, :interest, :type)";
+//                $statement = $this->_dbh->prepare($sql);
+//                $statement->bindParam(":interest", $indoorInterests);
+//                $intType = "Indoors";
+//                $statement->bindParam(":type", $intType);
+//                $statement->execute();
+//                $result = $statement->fetch(PDO::FETCH_ASSOC);
+//                $interestID = $result['interestID'];
+//            }
+//                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    public function insertOutdoorInterests($member) {
+//        $outdoorInterests = $member->getOutdoors();
+//                $sql = "INSERT INTO interests (interest_id, interest, type)
+//                 VALUES (default, :interest, :type)";
+//                $statement = $this->_dbh->prepare($sql);
+//                $intType = "Outdoors";
+//                $statement->bindParam(":type", $intType);
+//                $statement->bindParam(":interest", $outdoorInterests);
+//                $statement->execute();
+//                $result = $statement->fetch(PDO::FETCH_ASSOC);
+//                $interestID = $result['interestID'];
+//    }
 
-        if (!empty($outdoorInterests)) {
-            foreach ($outdoorInterests AS $interest ) {
-                $sql = "SELECT interestID FROM interest WHERE interest = '$interest'";
-                $statement = $this->_cnxn->prepare($sql);
-                $statement->execute();
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
-            }
-        }
-    }
-
-    public function insertInterest($interest, $id) {
-
-        $sql = "SELECT interestID FROM interest WHERE interest = '$interest'";
-        $statement = $this->_cnxn->prepare($sql);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        $interestID = $result['interestID'];
-
-        $sql2 = "INSERT INTO memberInterest (memberID, interestID) 
-                 VALUES ('$id', '$interestID')";
-        $statement2 = $this->_cnxn->prepare($sql2);
-        $statement2->execute();
-        $result2 = $statement2->fetch(PDO::FETCH_ASSOC);
-    }
 }

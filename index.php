@@ -12,7 +12,7 @@ session_start();
 $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
-
+//$f3->set('members', array(''));
 //Define arrays
 $f3->set('genders', array('Male','Female'));
 $f3->set('seekingArr', array('Female', 'Male'));
@@ -47,6 +47,10 @@ $f3->route('GET|POST /interests', function($f3) {
 $f3->route("GET|POST /profilePic", function () {
     global $controller;
     $controller->profilePic();
+});
+$f3->route("GET|POST /admin", function () {
+    global $controller;
+    $controller->admin();
 });
 $f3->route('GET|POST /summary', function() {
     global $controller;

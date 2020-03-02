@@ -201,7 +201,8 @@ class DatingController
             }
             $this->_f3->set('selectedIndoors', $selectedIndoors);
             $this->_f3->set('selectedOutdoors', $selectedOutdoors);
-
+//            $_SESSION['member']->setIndoors($selectedIndoors);
+//            $_SESSION['member']->setOutdoors($selectedOutdoors);
                 if ($this->_val->validIndoors($selectedIndoors)) {
                     if (empty($selectedIndoors)) {
                         $_SESSION['indoors'] = "No indoor interests selected.";
@@ -209,6 +210,9 @@ class DatingController
                     else {
                         $_SESSION['indoors'] = implode(", ", $selectedIndoors);
                         $_SESSION['member']->setIndoorInterests($_SESSION['indoors']);
+
+                        $GLOBALS['db']->insertIndoorInterests($_SESSION['member']);
+
                     }
                 }
                 else {
@@ -221,10 +225,10 @@ class DatingController
                 } else {
                     $_SESSION['outdoors'] = implode(", ", $selectedOutdoors);
                     $_SESSION['member']->setOutdoorInterests($_SESSION['outdoors']);
+                    $GLOBALS['db']->insertOutdoorInterests($_SESSION['member']);
                 }
             }
             else {
-
                 $this->_f3->set("errors['outdoor']", "NOTE: Please select all valid values for outdoor interests!");
                 $validInterest = false;
             }
@@ -244,6 +248,7 @@ class DatingController
         //if user decides not to upload pic, set to default pic and move on to summary page
         if(isset($_POST['no-button'])){
             $_SESSION['member']->setImage("images/default-profile.png");
+            $GLOBALS['db']->insertMember($_SESSION['member']);
             $this->_f3->reroute('/summary');
         }
         $target_dir = "uploads/";
@@ -288,12 +293,28 @@ class DatingController
         echo $view->render("views/profilePic.html");
     }
 
+    public function admin()
+    {
+        // query the database for all members
+        $members = $GLOBALS['db']->getMembers();
+        $this->_f3->set('members',array(($members)));
+        // save all members to fat free hive
+        $this->_f3->set('queryAllMembers', $members);
 
+        $interests = $GLOBALS['db']->getInterests(  $_SESSION['member']->get);
+        $this->_f3->set('interests',array(($interests)));
+        $this->_f3->set('queryAllInterests', $interests);
+//        var_dump($_SESSION['member']);
+        $view = new Template();
+        echo $view->render('views/admin.html');
+        session_destroy();
+    }
     /**
      * renders results.html
      */
     public function summary()
     {
+//        var_dump($_SESSION['member']->getIndoors());
 //        var_dump($_SESSION['member']);
         $view = new Template();
         echo $view->render('views/summary.html');

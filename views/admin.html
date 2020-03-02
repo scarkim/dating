@@ -1,0 +1,48 @@
+<include href="views/header.html" />
+<body>
+<h1>ALL MEMBERS</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">State</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Seeking</th>
+        <th scope="col">Premium</th>
+        <th scope="col">Interests</th>
+    </tr>
+    </thead>
+    <tbody>
+    <repeat group="{{ @queryAllMembers }}" value="{{ @member }}">
+        <!--CREATING NEW ROWS WITH INFO OF EACH MEMBER-->
+        <tr>
+            <td>{{ @member['member_id'] }} </td>
+            <td>{{ @member['fname'] }} {{ @member['lname'] }}</td>
+             <td> {{ @member['age'] }}</td>
+            <td> {{ @member['phone'] }}</td>
+            <td>{{ @member['email'] }}</td>
+            <td>{{ @member['state'] }}</td>
+            <td> {{ @member['gender'] }}</td>
+            <td> {{ @member['seeking'] }}</td>
+            <td>
+            <check if="{{ @member['premium'] == '1' }}">
+                <true>
+                    <input type="checkbox" checked>
+                </true>
+                <false>
+                    <input type="checkbox">
+                </false></check></td>
+        </tr>
+        <repeat group="{{ @queryAllInterests }}" value="{{ @interests }}">
+            <td>{{ @interests['interest'] }} </td>
+        </repeat>
+    </repeat>
+
+    </tbody>
+</table>
+</body>
+</html>
