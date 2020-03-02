@@ -14,69 +14,7 @@
 */
 class Validate
 {
-//    function validPersonalInfo($firstname, $lastname, $age, $gender, $phone)
-//    {
-//        global $f3;
-//        $isValid = true;//flag
-//
-//        if (!validFirstName($firstname)) {
-//            $isValid = false;
-//            $f3->set("errors['firstname']", "Please enter first name");
-//        }
-//
-//        if (!validLastName($lastname)) {
-//            $isValid = false;
-//            $f3->set("errors['lastname']", "Please enter last name");
-//        }
-//
-//        if (!validAge($age)) { //get the value of the passed key age is key
-//            $isValid = false;
-//            $f3->set("errors['age']", "Please enter valid age between 18 to 118 ");
-//        }
-//
-//        if (!validPhone($phone)) {
-//            $isValid = false;
-//            $f3->set("errors['phone']", "Please enter valid 10 digit phone number ");
-//        }
-//
-//        if (!validGender($gender)) {
-//            $isValid = false;
-//            $f3->set("errors['gender']", "Please select a gender ");
-//        }
-//        return $isValid;
-//    }
 
-//    function validProfile()
-//    {
-//        global $f3;
-//        $valid = true;//flag
-//        if (!validEmail($f3->get('email'))) {
-//            $valid = false;
-//            $f3->set("errors['email']", "Please enter valid email address ");
-//        }
-//        if (!validSeeking($f3->get('seeking'))) {
-//            $valid = false;
-//            $f3->set("errors['seeking']", "Please select an option");
-//        }
-//        return $valid;
-//    }
-//
-//    function validInterests()
-//    {
-//        global $f3;
-//        $validInterest = true;
-//        if (!validIndoors($f3->get('indoors'))) {
-//            $validInterest = false;
-//            $f3->set("errors['indoor']", "NOTE: Please select all valid values
-//for indoor interests!");
-//        }
-//        if (!validOutdoors($f3->get('outdoors'))) {
-//            $validInterest = false;
-//            $f3->set("errors['outdoor']", "NOTE: Please select all
-//valid values for outdoor interests!");
-//        }
-//        return $validInterest;
-//    }
 
     /**
      * @param $firstname
