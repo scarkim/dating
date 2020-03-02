@@ -9,12 +9,15 @@ class PremiumMember Extends Member
      * @var inDoorInterests
      */
     private  $_inDoorInterests;
+    /**
+     * @var
+     */
     private $_image;
     /**
      * @var outDoorInterests
      */
     private $_outDoorInterests;
-    //Parameterized constructor
+
     /**
      * PremiumMember constructor.
      * @param $fname
@@ -50,14 +53,25 @@ class PremiumMember Extends Member
     }
 
     /**
+     * returns outdoor interests
      * @return mixed
      */
     function getOutdoors(){
         return $this->_outDoorInterests;
     }
+
+    /**
+     * sets the member's image
+     * @param $image
+     */
     function setImage($image){
         $this->_image = $image;
     }
+
+    /**
+     * returns the member's image uploaded or default picture
+     * @return mixed
+     */
     function getImage(){
         return $this->_image;
     }

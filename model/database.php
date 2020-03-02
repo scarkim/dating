@@ -65,12 +65,16 @@ class Database
 
     /**
      * Database constructor.
+     * Calls connect() function
      */
     function __construct()
     {
         $this->connect();
     }
 
+    /**
+     * creates a new pdo connection and connects to database
+     */
     function connect(){
         try {
             //CREATING A NEW PDO CONNECTION
@@ -82,6 +86,11 @@ class Database
         }
     }
 
+    /**
+     * given $member param value, inserts into member table
+     * @param $member
+     * @return array
+     */
     function insertMember($member){
         //1. define the query
         $sql = "INSERT INTO member(member_id, fname, lname, age, gender, phone, email, state, 
@@ -120,6 +129,12 @@ class Database
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    /**
+     * returns array of all members in member table
+     * orders by last name, first name
+     * @return array
+     */
     function getMembers(){
         //1. define the query
         //GRAB ALL MEMBERS FROM MEMBER TABLE. SORT THEM BY LAST NAME AND THEN FIRST
@@ -133,18 +148,27 @@ class Database
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    /**
+     * returns the member given the specified member id
+     * @param $member_id
+     * @return array
+     */
     function getMember($member_id){
         $sql = "SELECT * FROM member WHERE member_id = :member_id";
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(":member_id", $member_id,PDO::PARAM_INT);
+        $statement->bindParam(":member_id", $member_id);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    /**
+     * @param $member_id
+     */
     function getInterests($member_id){
 
     }
-//                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //    public function insertIndoorInterests($member) {
 //        $indoorInterests = $member->getIndoors();
 //                $sql = "INSERT INTO interests (interest_id, interest, type)
@@ -157,7 +181,6 @@ class Database
 //                $result = $statement->fetch(PDO::FETCH_ASSOC);
 //                $interestID = $result['interestID'];
 //            }
-//                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //    public function insertOutdoorInterests($member) {
 //        $outdoorInterests = $member->getOutdoors();
 //                $sql = "INSERT INTO interests (interest_id, interest, type)
